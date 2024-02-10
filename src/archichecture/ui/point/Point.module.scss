@@ -1,0 +1,138 @@
+$circle: 1.5rem;
+$bigCircle: $circle * 1.5;
+
+$passiveCollor: rgb(134, 134, 134);
+$activCollor: rgb(36, 123, 16);
+$passiveCollorDef: orange;
+$activCollorDef: orangered;
+
+
+
+
+@mixin outer($color){
+  position: absolute;
+  
+  width: $circle;
+  height: $circle;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: $color;
+  border-radius: 50%;
+  border: 1px solid $color;
+  
+
+  transition: .5s;
+}
+@mixin outerActive($color){
+  width: $bigCircle;
+  height: $bigCircle;
+  background-color: white; 
+  border: 1px solid $color; 
+}
+@mixin inner($color){
+  visibility: hidden;
+  width: $circle;
+  height: $circle;
+  border-radius: 50%;
+  background-color: $color;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+@mixin inneActive(){
+  visibility: visible;
+}
+
+.wrapper{
+  z-index: 3;
+  position: relative;
+  width: $circle* 1.5;
+  height: $circle * 1.5;
+  // border: 1px solid black;
+  cursor: pointer;
+}
+.outer{
+  @include outer($passiveCollor) 
+}
+.outActive{
+  @include outerActive($activCollor)
+}
+
+.inner{
+  @include inner($activCollor)
+}
+
+
+
+.inneActive{
+  @include inneActive()
+}
+
+.outerDef{
+  @include outer($passiveCollorDef) 
+}
+.outActiveDef{
+  @include outerActive($activCollorDef)
+}
+.innerDef{
+  @include inner($activCollorDef)
+}
+.inneActiveDef{
+  @include inneActive()
+}
+
+.containerLabel{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 2;
+}
+
+.label{
+  position: absolute;
+  transform: translateX(-50%) translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 18px;
+  z-index: 4;
+}
+.containerLabel{
+  position: absolute;
+  width: 2.25rem;
+  height: 2.25rem;
+  top:50%;
+  left: 50%;
+  transform: translateX(-50%)  translateY(-50%);
+}
+
+@media(max-width: 900px){
+  .label{
+    font-size: 15px;
+  }
+  .containerLabel{
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+}
+@media(max-width: 800px){
+  .label{
+    font-size: 13px;
+  }
+  .containerLabel{
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+// @media(max-width: 800px){
+//   .label{
+//     font-size: 13px;
+//   }
+//   .wrapper{
+//     width: 1.1rem;
+//   }
+// }
