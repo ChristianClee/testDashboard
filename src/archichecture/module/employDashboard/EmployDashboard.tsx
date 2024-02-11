@@ -1,13 +1,16 @@
-import React, {useState,useEffect} from 'react';
+import React, { useContext } from 'react';
+import { Context } from '#reducers/context'
 import style from './EmployDashboard.module.scss'
 import BigCircle from '#archichecture/component/bigCircle/BigCircle';
 import Circle from '#archichecture/component/circle/Circle';
-import { employees, skills } from '#constant/employees'
+
 
 type PropsT = {
 
 }
 const EmployDashboard: React.FC<PropsT> = () => {
+  const {state} = useContext(Context)
+
 
 
   return (
@@ -15,8 +18,8 @@ const EmployDashboard: React.FC<PropsT> = () => {
       className={style.wrapper}
     >
       <div className={style.container_1}>
-        <BigCircle elements={ skills }>
-          <Circle elements={employees}/>
+        <BigCircle elements={ state.skills }>
+          <Circle elements={ state.employees }/>
         </BigCircle>
       </div>
      

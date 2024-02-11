@@ -1,10 +1,10 @@
 $circle: 1.5rem;
 $bigCircle: $circle * 1.5;
 
-$passiveCollor: rgb(134, 134, 134);
-$activCollor: rgb(36, 123, 16);
-$passiveCollorDef: orange;
-$activCollorDef: orangered;
+$passiveCollor: rgb(254, 201, 126);
+$activCollor: rgb(255, 96, 4);
+$passiveCollorDef: rgb(136, 136, 136);
+$activCollorDef: rgb(72, 180, 0);
 
 
 
@@ -53,13 +53,13 @@ $activCollorDef: orangered;
   // border: 1px solid black;
   cursor: pointer;
 }
+
 .outer{
   @include outer($passiveCollor) 
 }
 .outActive{
   @include outerActive($activCollor)
 }
-
 .inner{
   @include inner($activCollor)
 }
@@ -69,7 +69,6 @@ $activCollorDef: orangered;
 .inneActive{
   @include inneActive()
 }
-
 .outerDef{
   @include outer($passiveCollorDef) 
 }
@@ -83,6 +82,10 @@ $activCollorDef: orangered;
   @include inneActive()
 }
 
+
+
+
+
 .containerLabel{
   position: absolute;
   top: 50%;
@@ -90,17 +93,25 @@ $activCollorDef: orangered;
   transform: translateX(-50%) translateY(-50%);
   z-index: 2;
 }
-
 .label{
   position: absolute;
   transform: translateX(-50%) translateY(-50%);
+  transition: .5s;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  color: rgb(173, 173, 173);
+  scale: .8;
   font-size: 18px;
   z-index: 4;
 }
+.labelAct{
+  color: black;
+  scale: 1;
+}
+
+
 .containerLabel{
   position: absolute;
   width: 2.25rem;
@@ -128,11 +139,3 @@ $activCollorDef: orangered;
     height: 1.5rem;
   }
 }
-// @media(max-width: 800px){
-//   .label{
-//     font-size: 13px;
-//   }
-//   .wrapper{
-//     width: 1.1rem;
-//   }
-// }

@@ -3,24 +3,28 @@ export class UiUtil {
     style: { [key:string]: string },
     styleMode: true | undefined 
   ) {
-    let styleOutPassive: string = "";
-    let styleOutActive: string = "";
-    let styleInnPassive: string = "";
-    let styleInnActive: string = "";
+    let outActive: string = "";
+    let outPassive: string = "";
+    let innActive: string = "";
+    let innPassive: string = "";
+
+
 
     switch (styleMode) {
       case true:
-        styleOutPassive = style.outer;
-        styleOutActive = [style.outer, style.outActive].join(" ");
-        styleInnPassive = style.inner;
-        styleInnActive = [style.inner, style.inneActive].join(" ");
+        outPassive = style.outer;
+        outActive = [style.outer, style.outActive].join(" ");
+        
+        innPassive = style.inner;
+        innActive = [style.inner, style.inneActive].join(" ");
         break;
       default:
-        styleOutPassive = style.outerDef;
-        styleOutActive = [style.outerDef, style.outActiveDef].join(" ");
-        styleInnPassive = style.innerDef;
-        styleInnActive = [style.innerDef, style.inneActiveDef].join(" ");
+        outPassive = style.outerDef;
+        outActive = [style.outerDef, style.outActiveDef].join(" ");
+
+        innPassive = style.innerDef;
+        innActive = [style.innerDef, style.inneActiveDef].join(" ");
     }
-    return { styleOutPassive, styleOutActive, styleInnPassive, styleInnActive };
+    return { outPassive, outActive, innPassive, innActive };
   }
 }

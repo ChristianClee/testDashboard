@@ -1,8 +1,11 @@
-import React, { useRef } from 'react';
-import style from './BigCircle.module.scss'
+import React, { useRef, useContext } from 'react';
+import style from './BigCircle.module.scss';
 import Point from '#archichecture/ui/point/Point';
 import { ComponentUtil } from '../_functions/utilits';
-import { Skills_I } from '#types/interfaces'
+import { Skills_I } from '#reducers/_types/interfaces'
+import { Context } from '#reducers/context';
+import { Action_E } from '#reducers/actions';
+
 
 type PropsT = {
   children: React.ReactNode,
@@ -10,7 +13,7 @@ type PropsT = {
 }
 const BigCircle: React.FC<PropsT> = ({ children, elements }) => {
   const cicleRef = useRef<HTMLDivElement>(null)
-  
+  const {state, dispatch} = useContext(Context)
 
   return (
     <div
@@ -27,6 +30,13 @@ const BigCircle: React.FC<PropsT> = ({ children, elements }) => {
               func={
                 ComponentUtil.insertIn(item, arr)
               }
+              func_2={() => {
+              dispatch({
+                type: Action_E.EnableSkills,
+                payload: el
+              })
+
+            }}
               element={el}
               styleMode={true}
               key={item} />
