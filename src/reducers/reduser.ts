@@ -33,7 +33,7 @@ class PositionUtilit {
       }
       return i;
     });
-    const skills = state.skills.map((i) => {
+    let skills = state.skills.map((i) => {
       const condition: boolean =
         item.mainSkills.includes(i.name) || item.otherSkills.includes(i.name);
 
@@ -41,9 +41,9 @@ class PositionUtilit {
       return i;
     });
 
-    this.groopByOne(skills);
+    skills = this.groopByOne(skills);
     this.centrate(numb, employees, skills);
-    //@ts-ignore
+    
     return { employees, skills };
   }
 
@@ -58,7 +58,7 @@ class PositionUtilit {
       return i;
     });
 
-    const employees = state.employees.map((i) => {
+    let employees = state.employees.map((i) => {
       const condition: boolean =
         item.mainPositions.includes(i.name) ||
         item.otherPositions.includes(i.name);
@@ -67,9 +67,8 @@ class PositionUtilit {
       return i;
     });
 
-    this.groopByOne(employees);
+    employees = this.groopByOne(employees);
     this.centrate(numb, skills, employees);
-
 
     return { skills, employees };
   }
@@ -86,11 +85,38 @@ class PositionUtilit {
     return { employees, skills };
   }
 
-  private static groopByOne(item: Skills_I[] | Position_I[]) {
-    item.sort((one, two) => {
-      if (one.onClick === 2) return -1;
-      else return 1;
-    });
+  private static groopByOne(item: Skills_I[]): Skills_I[];
+  private static groopByOne(item: Position_I[]): Position_I[];
+  private static groopByOne(
+    item: Skills_I[] | Position_I[]
+  ): Skills_I[] | Position_I[] {
+    // item.sort((one, two) => {
+    //   if (one.onClick === 2) return -1;
+    //   else return 1;
+    // });
+    if ("mainPositions" in item[0]) {
+      const result: Skills_I[] = [];
+      const other: Skills_I[] = [];
+      item.forEach((i) => {
+        if (i.onClick === 2) {
+          result.push(i as Skills_I);
+        } else {
+          other.push(i as Skills_I);
+        }
+      });
+      return [...result, ...other];
+    } else {
+      const result: Position_I[] = [];
+      const other: Position_I[] = [];
+      item.forEach((i) => {
+        if (i.onClick === 2) {
+          result.push(i as Position_I);
+        } else {
+          other.push(i as Position_I);
+        }
+      });
+      return [...result, ...other];
+    }
   }
 
   private static centrate(
@@ -98,39 +124,33 @@ class PositionUtilit {
     noMove: Position_I[] | Skills_I[],
     move: Position_I[] | Skills_I[]
   ) {
-  
     const diffIndex = this.getDifference(noMove, move);
     const centerIndex = this.getCenterIndex(move);
- 
+
     const shift = this.getShift(index, centerIndex, diffIndex);
     this.shiftArr(move, shift);
-
-  
   }
   private static getShift(
     index: number,
     centerIndex: number,
-    diffIndex: number): number {
+    diffIndex: number
+  ): number {
     let result = index * diffIndex - centerIndex;
-    console.log(result);
-
 
     if (result > 0) {
       const val = result.toString().split(".");
-      let val_1: number = 0
+      let val_1: number = 0;
       try {
-        val_1 = parseInt(val[1][0])
-        console.log(val_1);
-       }catch{}
+        val_1 = parseInt(val[1][0]);
+      } catch {}
 
       if (val_1 >= 8) {
-        console.log("Sdf")
-        result = Math.ceil(result) + 1
+        result = Math.ceil(result) + 1;
       } else {
-        result = Math.ceil(result) 
+        result = Math.ceil(result);
       }
-    } 
-      return Math.ceil(result);
+    }
+    return Math.ceil(result);
   }
   private static getCenterIndex(move: Position_I[] | Skills_I[]) {
     let result: number = 0;
@@ -147,7 +167,7 @@ class PositionUtilit {
   ) {
     const lengthNoMove = noMove.length;
     const lengthMove = move.length;
-    return Math.round((lengthMove / lengthNoMove ) * 1000) / 1000;
+    return Math.round((lengthMove / lengthNoMove) * 1000) / 1000;
   }
   private static shiftArr(arr: Position_I[] | Skills_I[], shift: number) {
     if (shift > 0) {

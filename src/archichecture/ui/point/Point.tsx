@@ -11,28 +11,26 @@ type PropsT = {
   element: Position_I | Skills_I
   func?: () => Coordinate_I,
   styleMode?: true
-  func_2?:()=>void
+  func_2?: () => void
+  func_3?: () => void
 }
 
-const Point: React.FC<PropsT> = ({func, func_2, element, styleMode }) => {
+const Point: React.FC<PropsT> = ({func, func_2,func_3, element, styleMode }) => {
 
   let state = element.onClick
 
   
-
   const elemRef = useRef<HTMLDivElement>(null)
   const labelRef = useRef<HTMLDivElement>(null)
+
   const {
     outActive,
     outPassive,
-
     innActive,
     innPassive,
   } = UiUtil.getStyle(style, styleMode)
 
-
-  useCustomHook(func, elemRef, labelRef )
-
+  useCustomHook(func, elemRef, labelRef, element )
 
   return (
     <div
@@ -42,13 +40,19 @@ const Point: React.FC<PropsT> = ({func, func_2, element, styleMode }) => {
         if (func_2) {
           func_2()
         }
-        
-        
+        if (func_3) {
+          setTimeout(() => {
+            func_3()
+          },50)
+        }
         }}
     >
       <div className={style.containerLabel}>
         <p
-          className={ state?  [style.label, style.labelAct].join(" "): style.label}
+          className={
+            state === 1 ?  [style.label, style.labelAct].join(" ")
+              : state === 2 ? [style.label, style.labelAct2].join(" ")
+                : style.label}
           ref = {labelRef}
         >{element.name}</p>
       </div>
@@ -65,6 +69,7 @@ const Point: React.FC<PropsT> = ({func, func_2, element, styleMode }) => {
           
       </div>
     </div>
+    // <></>
   );
 }
 export default Point;

@@ -1,17 +1,18 @@
 $circle: 1.5rem;
 $bigCircle: $circle * 1.5;
 
-$passiveCollor: rgb(254, 201, 126);
-$activCollor: rgb(255, 96, 4);
+$passiveCollor: rgb(255, 218, 165);
+$activCollor: rgb(236, 59, 59);
 $passiveCollorDef: rgb(136, 136, 136);
 $activCollorDef: rgb(72, 180, 0);
+// $passiveCollor: rgba(254, 201, 126, 0.212);
+// $activCollor: rgba(255, 96, 4, 0.21);
+// $passiveCollorDef: rgba(136, 136, 136, 0.052);
+// $activCollorDef: rgba(72, 180, 0, 0.074);
 
-
-
-
-@mixin outer($color){
+@mixin outer($color) {
   position: absolute;
-  
+
   width: $circle;
   height: $circle;
   top: 50%;
@@ -20,17 +21,16 @@ $activCollorDef: rgb(72, 180, 0);
   background-color: $color;
   border-radius: 50%;
   border: 1px solid $color;
-  
 
-  transition: .5s;
+  transition: 0.5s;
 }
-@mixin outerActive($color){
+@mixin outerActive($color) {
   width: $bigCircle;
   height: $bigCircle;
-  background-color: white; 
-  border: 1px solid $color; 
+  background-color: white;
+  border: 1px solid $color;
 }
-@mixin inner($color){
+@mixin inner($color) {
   visibility: hidden;
   width: $circle;
   height: $circle;
@@ -41,101 +41,118 @@ $activCollorDef: rgb(72, 180, 0);
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
-@mixin inneActive(){
+@mixin inneActive() {
   visibility: visible;
 }
 
-.wrapper{
+.wrapper {
   z-index: 3;
   position: relative;
-  width: $circle* 1.5;
+  width: $circle * 1.5;
   height: $circle * 1.5;
   // border: 1px solid black;
   cursor: pointer;
 }
 
-.outer{
-  @include outer($passiveCollor) 
+.outer {
+  @include outer($passiveCollor);
 }
-.outActive{
-  @include outerActive($activCollor)
+.outActive {
+  @include outerActive($activCollor);
 }
-.inner{
-  @include inner($activCollor)
-}
-
-
-
-.inneActive{
-  @include inneActive()
-}
-.outerDef{
-  @include outer($passiveCollorDef) 
-}
-.outActiveDef{
-  @include outerActive($activCollorDef)
-}
-.innerDef{
-  @include inner($activCollorDef)
-}
-.inneActiveDef{
-  @include inneActive()
+.inner {
+  @include inner($activCollor);
 }
 
+.inneActive {
+  @include inneActive();
+}
+.outerDef {
+  @include outer($passiveCollorDef);
+}
+.outActiveDef {
+  @include outerActive($activCollorDef);
+}
+.innerDef {
+  @include inner($activCollorDef);
+}
+.inneActiveDef {
+  @include inneActive();
+}
 
-
-
-
-.containerLabel{
+.containerLabel {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   z-index: 2;
 }
-.label{
+.label {
   position: absolute;
   transform: translateX(-50%) translateY(-50%);
-  transition: .5s;
+  transition: 0.5s;
+  
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: rgb(173, 173, 173);
-  scale: .8;
+  scale: 0.8;
   font-size: 18px;
   z-index: 4;
 }
-.labelAct{
-  color: black;
+.labelAct {
+  transition-delay: 1.6s;
+  color: rgb(255, 255, 255);
   scale: 1;
+  background: rgba(1, 79, 8, 0.764);
+  padding: 0.5rem;
+  border-radius: 2rem;
 }
 
+.labelAct2{
+  transition-delay: 1.6s;
+  color: rgb(255, 255, 255);
+  scale: 1;
+  background: rgba(79, 58, 1, 0.673);
+  padding: 0.5rem;
+  border-radius: 2rem;
+}
 
-.containerLabel{
+.containerLabel {
   position: absolute;
   width: 2.25rem;
   height: 2.25rem;
-  top:50%;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%)  translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
 }
 
-@media(max-width: 900px){
-  .label{
+@media (max-width: 900px) {
+  .label {
     font-size: 15px;
   }
-  .containerLabel{
+  .containerLabel {
     width: 1.8rem;
     height: 1.8rem;
   }
 }
-@media(max-width: 800px){
-  .label{
+@media (max-width: 800px) {
+  .label {
     font-size: 13px;
   }
-  .containerLabel{
+  .containerLabel {
     width: 1.5rem;
     height: 1.5rem;
   }
+}
+@media (max-width: 590px) {
+  .labelAct {
+  scale: .9;
+}
+
+.labelAct2{
+
+  scale: .9;
+}
 }

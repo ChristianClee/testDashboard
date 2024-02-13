@@ -1,10 +1,11 @@
 import style from './Circle.module.scss'
 import Point from '#archichecture/ui/point/Point';
-import React, { useContext, useRef } from 'react';
+import React, { useContext,  useRef } from 'react';
 import { Context } from '#reducers/context'
 import { Action_E } from '#reducers/actions'
-import { ComponentUtil } from '../_functions/utilits'
-import { Position_I } from '#reducers/_types/interfaces'
+import { ComponentUtil, myCanvas } from '../_functions/utilits'
+import { Position_I, Skills_I } from '#reducers/_types/interfaces'
+import { Position_E, Skills_E } from '#reducers/_types/enums'
 
 
 
@@ -16,6 +17,8 @@ type PropsT = {
 const Circle: React.FC<PropsT> = ({elements}) => {
   const cicleRef = useRef<HTMLDivElement>(null)
   const {state, dispatch} = useContext(Context)
+  const sckils = state.skills
+
 
 
   return (
@@ -39,8 +42,10 @@ const Circle: React.FC<PropsT> = ({elements}) => {
                 type: Action_E.EnablePoints,
                 payload: el
               })
-
             }}
+            func_3={() => 
+              myCanvas.drowLinesEmploe(el, sckils)
+            }
             element={el}
             key={item} />
             

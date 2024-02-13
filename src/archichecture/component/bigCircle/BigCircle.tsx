@@ -1,10 +1,12 @@
 import React, { useRef, useContext } from 'react';
 import style from './BigCircle.module.scss';
 import Point from '#archichecture/ui/point/Point';
-import { ComponentUtil } from '../_functions/utilits';
+import { ComponentUtil, myCanvas } from '../_functions/utilits';
 import { Skills_I } from '#reducers/_types/interfaces'
 import { Context } from '#reducers/context';
 import { Action_E } from '#reducers/actions';
+
+
 
 
 type PropsT = {
@@ -35,8 +37,10 @@ const BigCircle: React.FC<PropsT> = ({ children, elements }) => {
                 type: Action_E.EnableSkills,
                 payload: el
               })
-
-            }}
+              }}
+              func_3={() => {
+                myCanvas.drowLinesSckils(el, state.employees)
+              }}
               element={el}
               styleMode={true}
               key={item} />
@@ -45,6 +49,7 @@ const BigCircle: React.FC<PropsT> = ({ children, elements }) => {
       </div>
       <div className={style.fon}>
       </div>
+      <svg className={style.canvas} id='canvas'/>
     </div>
   );
 }

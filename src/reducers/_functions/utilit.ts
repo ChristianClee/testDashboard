@@ -1,8 +1,10 @@
-import { Skills_I, Position_I } from "#reducers/_types/interfaces";
+import { Skills_I, Position_I, EntryDate_I } from "#reducers/_types/interfaces";
 import { Skills_E, Position_E } from "#reducers/_types/enums";
+import { v4 } from "uuid";
+
 
 export class ConstantUtil {
-  public static getSkills(arr: Position_I[]): Skills_I[] {
+  public static getSkills(arr: EntryDate_I[]): Skills_I[] {
     const result: Skills_I[] = [];
     const allSkills: Set<Skills_E> = new Set();
 
@@ -33,9 +35,21 @@ export class ConstantUtil {
         mainPositions,
         otherPositions,
         onClick: null,
+        id: v4(),
       });
     });
 
     return result;
+  }
+  public static getEmployee(arr: EntryDate_I[]): Position_I[] {
+    const result: Position_I[] = []
+    arr.forEach(i => {
+      result.push({
+        ...i,
+        onClick: null,
+        id: v4(),
+      });
+    })
+    return result
   }
 }
