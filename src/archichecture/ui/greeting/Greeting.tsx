@@ -27,7 +27,7 @@ const Greeting: React.FC<PropsT> = () => {
       className={style.wrapper}
       ref = {elemRef}
     >
-      <p>
+      <p className={style.text}>
         тестовое Мишкова Ильи
       </p>
       <img src={logo} className={style.logo} alt="logo" />

@@ -1,4 +1,4 @@
-$circle: 1.5rem;
+$circle: 2.0rem;
 $bigCircle: $circle * 1.5;
 
 $passiveCollor: rgb(255, 218, 165);
@@ -138,6 +138,7 @@ $activCollorDef: rgb(72, 180, 0);
   }
 }
 @media (max-width: 800px) {
+  // $circle: 1.5rem;
   .label {
     font-size: 13px;
   }
@@ -147,6 +148,10 @@ $activCollorDef: rgb(72, 180, 0);
   }
 }
 @media (max-width: 590px) {
+
+  .label {
+    font-size: 10px;
+  }
   .labelAct {
   scale: .9;
 }
